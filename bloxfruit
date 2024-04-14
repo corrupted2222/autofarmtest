@@ -1,1 +1,23 @@
+-- Blox Fruits Autofarm Script
 
+-- Constants
+local Player = game.Players.LocalPlayer
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RemoteEvent = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("MainEvent")
+local Cooldown = 5 -- Cooldown in seconds between attacks
+
+-- Function to attack
+local function attack()
+    RemoteEvent:FireServer("MeleeAttack") -- Fire server event to perform melee attack
+end
+
+-- Main function for autofarming
+local function autofarm()
+    while true do
+        attack() -- Perform attack
+        wait(Cooldown) -- Wait for cooldown before attacking again
+    end
+end
+
+-- Start autofarming
+autofarm()
